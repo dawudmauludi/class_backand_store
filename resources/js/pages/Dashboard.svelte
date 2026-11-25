@@ -12,6 +12,7 @@
 </script>
 
 <script lang="ts">
+    import { Link } from '@inertiajs/svelte';
     import AppHead from '@/components/AppHead.svelte';
     import { Badge } from '@/components/ui/badge';
     import { Button } from '@/components/ui/button';
@@ -23,11 +24,15 @@
         CardTitle,
     } from '@/components/ui/card';
     import { Input } from '@/components/ui/input';
+    import { toUrl } from '@/lib/utils';
+    import { index as categoriesIndex } from '@/routes/categories';
+    import { create as productsCreate, index as productsIndex } from '@/routes/products';
     import Boxes from '@lucide/svelte/icons/boxes';
     import Grid from '@lucide/svelte/icons/grid';
     import Layers from '@lucide/svelte/icons/layers';
     import List from '@lucide/svelte/icons/list';
     import Package from '@lucide/svelte/icons/package';
+    import Plus from '@lucide/svelte/icons/plus';
     import Search from '@lucide/svelte/icons/search';
     import ShoppingBag from '@lucide/svelte/icons/shopping-bag';
     import Tag from '@lucide/svelte/icons/tag';
@@ -132,11 +137,31 @@
                 Ringkasan inventaris produk dan kategori dari database seeder.
             </p>
         </div>
-        <div class="flex items-center gap-2 pt-2 sm:pt-0">
-            <Badge variant="outline" class="gap-1.5 px-3 py-1 text-xs">
-                <span class="inline-block size-2 rounded-full bg-emerald-500"></span>
-                Database Terhubung
-            </Badge>
+        <div class="flex flex-wrap items-center gap-2 pt-2 sm:pt-0">
+            <Button asChild variant="outline" size="sm" class="gap-1.5">
+                {#snippet children(props)}
+                    <Link href={toUrl(categoriesIndex())} class={props.class}>
+                        <Layers class="size-3.5" />
+                        Kelola Kategori
+                    </Link>
+                {/snippet}
+            </Button>
+            <Button asChild variant="outline" size="sm" class="gap-1.5">
+                {#snippet children(props)}
+                    <Link href={toUrl(productsIndex())} class={props.class}>
+                        <Package class="size-3.5" />
+                        Kelola Produk
+                    </Link>
+                {/snippet}
+            </Button>
+            <Button asChild size="sm" class="gap-1.5">
+                {#snippet children(props)}
+                    <Link href={toUrl(productsCreate())} class={props.class}>
+                        <Plus class="size-3.5" />
+                        Tambah Produk
+                    </Link>
+                {/snippet}
+            </Button>
         </div>
     </div>
 

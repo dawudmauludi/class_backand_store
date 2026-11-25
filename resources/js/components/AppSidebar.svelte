@@ -2,7 +2,9 @@
     import { Link } from '@inertiajs/svelte';
     import BookOpen from '@lucide/svelte/icons/book-open';
     import FolderGit2 from '@lucide/svelte/icons/folder-git-2';
+    import Layers from '@lucide/svelte/icons/layers';
     import LayoutGrid from '@lucide/svelte/icons/layout-grid';
+    import Package from '@lucide/svelte/icons/package';
     import type { Snippet } from 'svelte';
     import AppLogo from '@/components/AppLogo.svelte';
     import NavFooter from '@/components/NavFooter.svelte';
@@ -19,6 +21,8 @@
     } from '@/components/ui/sidebar';
     import { toUrl } from '@/lib/utils';
     import { dashboard } from '@/routes';
+    import { index as categoriesIndex } from '@/routes/categories';
+    import { index as productsIndex } from '@/routes/products';
     import type { NavItem } from '@/types';
 
     let {
@@ -32,6 +36,16 @@
             title: 'Dashboard',
             href: dashboard(),
             icon: LayoutGrid,
+        },
+        {
+            title: 'Produk',
+            href: productsIndex(),
+            icon: Package,
+        },
+        {
+            title: 'Kategori Produk',
+            href: categoriesIndex(),
+            icon: Layers,
         },
     ];
 
